@@ -27,7 +27,7 @@ module.exports = {
     }),
     getValidation: (mydata, keyname) => new Promise((resolve, reject) => {
         myDB.find({ [keyname]: mydata }, (err, data) => {
-            console.log({ [keyname]: mydata })
+            // console.log({ [keyname]: mydata })
             if (err) {
                 resolve('Error in validation');
             } else {
