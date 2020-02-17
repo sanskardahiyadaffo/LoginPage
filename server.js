@@ -5,11 +5,17 @@ const bodyParser = require('body-parser');
 //For post request
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
-app.use(express.static("webpage"));
+
+app.get('/myfiles:id', (req, res) => {
+    res.send('<script>alert("Invalid url\\n");location.href="/";</script>');
+});
+
+app.use('/myfiles', express.static("webpage"));
+
 app.engine('htm', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.set('view engine', 'htm');
-app.set('views', __dirname+'/webpage');
+app.set('views', __dirname + '/webpage');
 
 //Routings
 const router = require('./router');

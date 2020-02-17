@@ -2,13 +2,14 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const api = require('./api');
+
 router.get(`/`, (req, res) => {
     res.render('index.htm');
     //    res.end(`Home Page`);
 });
 
 router.get('/signup', (req, res) => {
-    res.redirect('register.htm');
+    res.render('register.htm');
 });
 
 router
@@ -24,9 +25,10 @@ router
             delete userdata.firstname;
             delete userdata.lastname;
             // console.log(userdata);
+            let outputdata = await api.getdata({ name: userdata.username, password: userdata.password3 });///verify password
             let Validation1 = await api.updateData(userdata);//update user data
             Validation1.name = Validation1.username;
-            let outputdata = await api.getdata(Validation1);
+            let outputdata2 = await api.getdata(Validation1);
             personaldata = outputdata;
             res.render('final.htm', { data: personaldata })
             personaldata = {}
@@ -35,12 +37,12 @@ router
         catch (err) {
             console.log('Error found on updation');
             console.log(err);
-            res.redirect('/')
+            res.send('<script>alert("Password is not correct\\n Please Login Again");location.href="/";</script>');
         }
 
     })
     .get((req, res) => {
-        res.redirect('/');
+        res.redirect('signup');
     });
 
 
@@ -62,24 +64,16 @@ router
             // console.log(Validation);
             let output = await api.adduser(userdata);
             // console.log(output);
-            res.redirect('index.htm')
+            res.redirect('/')
         } catch (err) {
             console.log('Data Validation Failed at database')
-            fs.readFile('webpage/register.htm', (err, data) => {
-                if (err) {
-                    console.log('/registration: File not Found');
-                    res.redirect('index.htm');
-                } else {
-                    console.log('Creating alert on webpage');
-                    res.send(data.toString() + '<script> alert("Username or Email \
-already exists\\nPlease Re-Enter data");signup.click();</script>');
-                }
-            });
+            res.send('<script> alert("Username or Email \
+already exists\\nPlease Re-Enter data");location.href="registration";</script>');
 
         }
     })
     .get((req, res) => {
-        res.redirect('index.htm');
+        res.redirect('signup');
     });
 
 
@@ -93,18 +87,16 @@ router
             personaldata = {}
         } catch (err) {
             //console.log(err);
-            fs.readFile('webpage/index.htm', (err, data) => {
-                if (err) {
-                    console.log('/data error: File not Found');
-                    res.redirect('index.htm');
-                } else {
-                    //console.log('/data error: Creating alert on webpage');
-                    res.send(data.toString() + '<script> alert("Username/Email or Password mismatch\\nPlease try again..!!");</script>');
-                }
-            });
+            res.send('<script> alert("Username/Email or Password mismatch\\nPlease try again..!!");location.href="/";</script>');
+
         }
     })
     .get(async (req, res) => {
-        res.redirect('/index.htm');
+        res.redirect('/');
     });
+
+router.get('*', (req, res) => {
+    res.send('<script>alert("Invalid url\\n");location.href="/";</script>');
+});
+
 module.exports = router;

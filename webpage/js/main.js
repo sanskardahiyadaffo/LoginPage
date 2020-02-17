@@ -7,7 +7,7 @@ let value = '';
      * ************** */
     $('#pass1').keyup(function () {
         // console.log('Done');
-        value=$(this).val().trim();
+        value = $(this).val().trim();
         if ($(this).val().trim() != "") {
             $('#pass2').prop('disabled', false);
         } else {
@@ -17,10 +17,12 @@ let value = '';
     $('#pass2').keyup(function () {
         // console.log('Done');
         let val = $(this).val().trim();
-        if (val== value.substr(0,val.length)) {
-            $('#pass2validate').removeClass('alert-validate');
+        if (val == value.substr(0, val.length).trim()) {
+            $('#pass2').css({ 'background-color': 'white' });
+            $('#pass1').css({ 'background-color': 'white' });
         } else {
-            $('#pass2validate').addClass('alert-validate');
+            $('#pass2').css({ 'background-color': 'rgba(255,0,0,0.1)' });
+            $('#pass1').css({ 'background-color': 'rgba(255,0,0,0.1)' });
         }
     });
     /*==================================================================
@@ -45,6 +47,13 @@ let value = '';
 
     $('.validate-form').on('submit', function () {
         var check = true;
+        if ($('#pass1') && $('#pass2'))
+            if ($('#pass1').val().trim() != $('#pass2').val().trim()) {
+                check = false;
+                showValidate('#pass1');
+                showValidate('#pass2');
+
+            }
 
         for (var i = 0; i < input.length; i++) {
             if (validate(input[i]) == false) {

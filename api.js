@@ -14,8 +14,6 @@ module.exports = {
     updateData: (mydata) => new Promise((resolve, reject) => {
         let id = mydata._id;
         delete mydata._id;
-        delete mydata.password2;
-        delete mydata.password3;
         // console.log(mydata);
 
         myDB.updateOne({ _id: new ObjectId(id) }, mydata, (err, data) => {
