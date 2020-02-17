@@ -109,12 +109,28 @@
                             <span class="focus-input100" data-placeholder="Enter Old Password"></span>
                         </div>
                     </div>
-                    <div class="container-login100-form-btn">
-                        <div class="wrap-login100-form-btn">
-                            <div class="login100-form-bgbtn"></div>
-                            <button class="login100-form-btn">
-                                Update Account
-                            </button>
+                    <div class="form-row" style="justify-content: space-between;">
+                        <div class="form-half ">
+                            <!--  -->
+                            <div class="container-login100-form-btn">
+                                <div class="wrap-login100-form-btn">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn">
+                                        Update Profile
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-half ">
+                            <!--  -->
+                            <div class="container-login100-form-btn">
+                                <div class="wrap-login100-form-btn">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn" onclick="updateData('update')">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -186,9 +202,16 @@
     <!--===============================================================================================-->
     <script src="myfiles/js/main.js"></script>
     <script>
-        function updateData() {
-            document.getElementById('updateData').style.display = 'block';
-            document.getElementById('showData').style.display = 'none';
+        function updateData(c) {
+            if (c) {
+
+
+                document.getElementById('updateData').style.display = 'none';
+                document.getElementById('showData').style.display = 'block';
+            } else {
+                document.getElementById('updateData').style.display = 'block';
+                document.getElementById('showData').style.display = 'none';
+            }
 
         }</script>
 </body>
