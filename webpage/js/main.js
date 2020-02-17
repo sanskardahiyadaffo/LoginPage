@@ -47,7 +47,7 @@ let value = '';
 
     $('.validate-form').on('submit', function () {
         var check = true;
-        if ($('#pass1') && $('#pass2'))
+        if ($('#pass1').val() && $('#pass2').val())
             if ($('#pass1').val().trim() != $('#pass2').val().trim()) {
                 check = false;
                 showValidate('#pass1');

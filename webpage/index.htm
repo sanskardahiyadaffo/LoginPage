@@ -27,6 +27,18 @@
     <link rel="stylesheet" type="text/css" href="myfiles/css/util.css">
     <link rel="stylesheet" type="text/css" href="myfiles/css/main.css">
     <!--===============================================================================================-->
+<style>
+.extralinks>div{
+    min-width: 100px;
+}
+.extralinks{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 10%;
+}
+</style>
 </head>
 
 <body>
@@ -35,8 +47,8 @@
         <div class="container-login100">
             <div class="wrap-login100">
                 <form class="login100-form validate-form" method="POST" action="login">
-                    <div class="wrap-input100 validate-input" data-validate="">
-                        <input class="input100" type="text" name="name" />
+                    <div class="wrap-input100 validate-input" data-validate="Enter Value">
+                        <input class="input100" type="text" name="name" autofocus />
                         <span class="focus-input100" data-placeholder="Username or Email"></span>
                     </div>
 
@@ -57,6 +69,13 @@
                         </div>
                     </div>
 
+                    <div class="text-center p-t-115 extralinks">
+                        <div>Login Alt</div>
+                        <div>Login Alt</div>
+                        <div>Login Alt</div>
+                        <div>Login Alt</div>
+                        
+                    </div>
                     <div class="text-center p-t-115">
                         <span class="txt1">
 							Don’t have an account?

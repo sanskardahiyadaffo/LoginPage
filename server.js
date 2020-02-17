@@ -1,20 +1,18 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser')
 
 //For post request
-app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
-
-app.get('/myfiles:id', (req, res) => {
-    res.send('<script>alert("Invalid url\\n");location.href="/";</script>');
-});
+app.use(bodyParser.urlencoded());
 
 app.use('/myfiles', express.static("webpage"));
 
 app.engine('htm', require('ejs').renderFile);
-app.set('view engine', 'html');
-app.set('view engine', 'htm');
+app.engine('html', require('ejs').renderFile);
+// app.set('view engine', 'html');
+// app.set('view engine', 'htm');
 app.set('views', __dirname + '/webpage');
 
 //Routings
@@ -23,7 +21,10 @@ app.use('/', router);
 
 //Database Connection
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/nodeJS', { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect('mongodb://127.0.0.1:27017/nodeJS', {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+});
 
 //Listening to server
 const port = 8081;

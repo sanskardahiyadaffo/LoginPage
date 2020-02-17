@@ -96,7 +96,7 @@ router
     });
 
 router.get('*', (req, res) => {
-    res.send('<script>alert("Invalid url\\n");location.href="/";</script>');
+    res.send('<script>alert("Invalid url\\n");location.href="/login";</script>');
 });
 
 module.exports = router;
