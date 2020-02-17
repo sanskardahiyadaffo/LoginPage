@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Register</title>
+    <title>Profile</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -27,79 +27,145 @@
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--===============================================================================================-->
+    <style>
+        /* .wrap-login100>div {
+            flex: 1;
+        }
+        */
+        .wrap-login100 {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+        }
+
+        #showData .form-row {
+            margin: 2%;
+            justify-content: flex-start;
+        }
+
+        #_id {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
     <div class="limiter">
         <div class="container-login100">
-            <div class="wrap-login100">
-                <form class="login100-form validate-form" method="POST" action="registration">
+
+            <div id="updateData" class="wrap-login100">
+                <form class="login100-form validate-form" method="POST" action="update">
+                    <input type="text" id="_id" name='_id' value="<%= data._id%>" />
                     <div class="form-row">
                         <div class="wrap-input100 form-half validate-input" data-validate="">
-                            <input class="input100" type="text" name="firstname" />
+                            <input class="input100 has-val" type="text" value='<%=data.name.firstname%>'
+                                name="firstname" />
                             <span class="focus-input100" data-placeholder="First Name"></span>
                         </div>
                         <div class="wrap-input100 form-half validate-input" data-validate="">
-                            <input class="input100" type="text" name="lastname" />
+                            <input class="input100 has-val" type="text" value='<%=data.name.lastname%>'
+                                name="lastname" />
                             <span class="focus-input100" data-placeholder="Last Name"></span>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="wrap-input100 validate-input" data-validate="Enter Valid Username">
-                            <input class="input100" type="text" name="username" />
-                            <span class="focus-input100" data-placeholder="Username"></span>
-                        </div>
-                    </div>
-                    <div class="form-row">
                         <div class="wrap-input100 form-half validate-input" data-validate="Valid email is: a@b.c">
-                            <input class="input100" type="text" name="email" />
+                            <input class="input100 has-val" type="text" value='<%=data.email%>' name="email" />
                             <span class="focus-input100" data-placeholder="Email"></span>
                         </div>
                         <div class="wrap-input100 form-half validate-input" data-validate="">
-                            <input class="input100" type="text" name="phone" />
+                            <input class="input100 has-val" type="text" value='<%=data.phone%>' name="phone" />
                             <span class="focus-input100" data-placeholder="Phone Number"></span>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="wrap-input100 form-half validate-input" data-validate="">
+                        <div class="wrap-input100 form-half" data-validate="">
                             <span class="btn-show-pass">
                                 <i class="zmdi zmdi-eye"></i>
                             </span>
                             <input class="input100" type="password" name="password" />
-                            <span class="focus-input100" data-placeholder="Enter Password"></span>
+                            <span class="focus-input100" data-placeholder="*Enter New Password"></span>
+                        </div>
+                        <div class="wrap-input100 form-half" data-validate="">
+                            <span class="btn-show-pass">
+                                <i class="zmdi zmdi-eye"></i>
+                            </span>
+                            <input class="input100" type="password" name="password2" />
+                            <span class="focus-input100" data-placeholder="*Enter Password Again"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="wrap-input100 form-half validate-input" data-validate="Enter Valid Username">
+                            <input class="input100 has-val" type="text" value='<%=data.username%>' name="username" />
+                            <span class="focus-input100" data-placeholder="Username"></span>
                         </div>
                         <div class="wrap-input100 form-half validate-input" data-validate="">
                             <span class="btn-show-pass">
                                 <i class="zmdi zmdi-eye"></i>
                             </span>
-                            <input class="input100" type="password" name="password2" />
-                            <span class="focus-input100" data-placeholder="Enter Password Again"></span>
+                            <input class="input100" type="password" name="password3" />
+                            <span class="focus-input100" data-placeholder="Enter Old Password"></span>
                         </div>
                     </div>
-
                     <div class="container-login100-form-btn">
                         <div class="wrap-login100-form-btn">
                             <div class="login100-form-bgbtn"></div>
                             <button class="login100-form-btn">
-                                Create Account
+                                Update Account
                             </button>
                         </div>
                     </div>
-
-                    <div class="text-center p-t-115">
-                        <span class="txt1">
-                            Already have an account?
-                        </span>
-
-                        <a class="txt2" href="index.htm">
-                            Sign In
-                        </a>
-                    </div>
                 </form>
+            </div>
+            <div id="showData" class="wrap-login100">
+                <div class="form-row">
+                    Welcome
+                    &nbsp;<span><%= data.name.firstname %></span>
+                    &nbsp;<span><%= data.name.lastname %></span>
+                </div>
+                <div class="form-row">
+                    Your Username is &nbsp;<span><%= data.username %></span>
+                </div>
+                <div class="form-row">
+                    Your Email Id is &nbsp;<span><%= data.email %></span>
+                </div>
+                <div class="form-row">
+                    Your Phone Number is &nbsp;<span><%= data.phone %></span>
+                </div>
+
+                <div class="form-row" style="justify-content: space-between;">
+                    <div class="form-half ">
+                        <!--  -->
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn" onclick="location.href='index.htm'">
+                                    Sign Out
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-half ">
+                        <!--  -->
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn" onclick="location.href='index.htm'">
+                                    Edit Profile
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button class="login100-form-btn" onclick="location.href='index.htm'">
+                Sign Out
+              </button> -->
             </div>
         </div>
     </div>
-
     <div id="dropDownSelect1"></div>
     <!--===============================================================================================-->
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>

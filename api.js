@@ -10,10 +10,21 @@ module.exports = {
             }
         });
     }),
-
+    updateData: (mydata) => new Promise((resolve, reject) => {
+        let id = mydata._id;
+        delete mydata._id;
+        console.log(mydata);
+        myDB.update({ _id: id }, mydata, (err, data) => {
+            if (err) {
+                reject('/updateData: Database Error');
+            } else {
+                resolve('Update Sucessful');
+            }
+        });
+    }),
     getValidation: (mydata, keyname) => new Promise((resolve, reject) => {
         myDB.find({ [keyname]: mydata }, (err, data) => {
-            //console.log({ [keyname]: mydata })
+            console.log({ [keyname]: mydata })
             if (err) {
                 resolve('Error in validation');
             } else {
@@ -30,7 +41,7 @@ module.exports = {
     getdata: (myData = false) => new Promise((resolve, reject) => {
         let filter = {};
         if (myData.name) {
-            filter = { $and: [{password:myData.password}, { $or: [{ email: myData.name }, { username: myData.name }] }] }
+            filter = { $and: [{ password: myData.password }, { $or: [{ email: myData.name }, { username: myData.name }] }] }
             //console.log(filter)
         }
         myDB.find(filter, (err, result) => {

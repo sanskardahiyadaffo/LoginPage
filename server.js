@@ -8,6 +8,7 @@ app.use(bodyParser.json());
 app.use(express.static("webpage"));
 app.engine('htm', require('ejs').renderFile);
 app.set('view engine', 'html');
+app.set('view engine', 'htm');
 app.set('views', __dirname+'/webpage');
 
 //Routings
