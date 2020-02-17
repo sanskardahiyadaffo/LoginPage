@@ -10,6 +10,7 @@ router.get(`/`, (req, res) => {
         res.redirect('/login');
 
     } else {
+        customUserName = ''
         if (toogel) {
             // console.log('Session Expired');
             res.render('index.htm');
@@ -30,6 +31,7 @@ router.get('/signup', (req, res) => {
 router.get('/signout', (req, res) => {
     console.log(customUserName, ' is signing out');
     toogel = true;
+    customUserName = ''
     res.clearCookie('MyCookie');
     res.redirect('/');
 });
@@ -52,6 +54,7 @@ router
             Validation1.name = Validation1.username;
             let outputdata2 = await api.getdata(Validation1);
             personaldata = outputdata;
+            customUserName = outputdata.username;
             console.log(customUserName, ':Update Sucessfull\n', outputdata);
             res.cookie("MyCookie", personaldata, { maxAge: CookieTimeout });
             res.render('final.htm', { data: personaldata })
@@ -105,11 +108,12 @@ router
     .route('/login')
     .post(async (req, res) => {
         try {
-            console.log('Post Call for login by ', customUserName);
             let outputdata = await api.getdata(req.body);
             personaldata = outputdata;
             res.cookie("MyCookie", personaldata, { maxAge: CookieTimeout });
+            customUserName=personaldata.username;
             res.render('final.htm', { data: personaldata })
+            console.log('Post Call for login by ', customUserName);
             personaldata = {};
             toogel = false;
         } catch (err) {
