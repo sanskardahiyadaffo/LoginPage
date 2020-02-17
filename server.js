@@ -29,8 +29,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/nodeJS', {
 
 //Listening to server
 const port = 8081;
-// const hostname = '127.0.0.1';
-const hostname = '192.168.100.152';
+const hostname = '127.0.0.1';
+// const hostname = '192.168.100.152';
 app.listen(port, hostname, () => {
     console.log(`Server at http://${hostname}:${port}`);
 });

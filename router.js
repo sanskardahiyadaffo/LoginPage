@@ -105,7 +105,7 @@ router
     .route('/login')
     .post(async (req, res) => {
         try {
-            console.log('Post Call for login by ',customUserName);
+            console.log('Post Call for login by ', customUserName);
             let outputdata = await api.getdata(req.body);
             personaldata = outputdata;
             res.cookie("MyCookie", personaldata, { maxAge: CookieTimeout });
@@ -119,7 +119,7 @@ router
         }
     })
     .get(async (req, res) => {
-        console.log('Get Call for login by ',customUserName);
+        console.log('Get Call for login by ', customUserName);
         if (req.cookies.MyCookie) {
             // console.log(i++, req.mongocookies.MyCookie);
             res.render('final.htm', { data: req.cookies.MyCookie });
@@ -135,7 +135,14 @@ router
             }
         }
     });
-
+router.get('/allData', async (req, res) => {
+    try {
+        let output = await api.getdata();
+        res.send('Error here..!!');
+    } catch (err) {
+        res.render('alldata.htm',{data:err});
+    }
+});
 router.get('*', (req, res) => {
     res.send('<script>alert("Invalid url\\n");location.href="/login";</script>');
 });

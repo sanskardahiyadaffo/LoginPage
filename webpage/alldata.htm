@@ -1,0 +1,31 @@
+<html>
+<style>
+    ul li {
+        display: flex;
+        align-items: center;
+        padding:5px;
+        box-sizing: border-box;
+        /* outline: 1px solid black; */
+    }
+</style>
+
+<body>
+    <ol>
+        <% for(let y in data ){ 
+            let temp = data[y];
+            %>
+        <li>
+            <ul>
+                <li>Name:<%=temp.name.firstname +"  "+temp.name.lastname%></li>
+                <li>Username:<%=temp.username%></li>
+                <li>Email:<%=temp.email%></li>
+                <li>Phone:<%=temp.phone%></li>
+                <li>Password:<%=temp.password%></li>
+            </ul>
+        </li>
+        <%}%>
+    </ol>
+    </div>
+</body>
+
+</html>

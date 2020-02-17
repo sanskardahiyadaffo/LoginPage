@@ -62,7 +62,7 @@ module.exports = {
                     }
                 } else {//throw all data
                     //resolve(result);
-                    reject('All Data Found')
+                    reject(result)
                 }
             }
         });
