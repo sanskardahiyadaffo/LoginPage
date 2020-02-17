@@ -49,7 +49,9 @@ a {
 a:focus {
   outline: none !important;
 }
-
+input:disabled{
+  background-color: rgba(0,0,0,0.1);
+}
 a:hover {
   text-decoration: none;
   color: #6a7dfe;

@@ -1,12 +1,33 @@
+let value = '';
 
 (function ($) {
     "use strict";
-
+    /*****************************************************
+     * Custun settings
+     * ************** */
+    $('#pass1').keyup(function () {
+        // console.log('Done');
+        value=$(this).val().trim();
+        if ($(this).val().trim() != "") {
+            $('#pass2').prop('disabled', false);
+        } else {
+            $('#pass2').prop('disabled', true);
+        }
+    });
+    $('#pass2').keyup(function () {
+        // console.log('Done');
+        let val = $(this).val().trim();
+        if (val== value.substr(0,val.length)) {
+            $('#pass2validate').removeClass('alert-validate');
+        } else {
+            $('#pass2validate').addClass('alert-validate');
+        }
+    });
     /*==================================================================
     [ Focus input ]*/
     $('.input100').each(function () {
         $(this).on('blur', function () {
-            console.log($(this).val());
+            // console.log($(this).val());
 
             if ($(this).val().trim() != "") {
                 $(this).addClass('has-val');
@@ -15,7 +36,7 @@
                 $(this).removeClass('has-val');
             }
         })
-    })
+    });
 
 
     /*==================================================================
