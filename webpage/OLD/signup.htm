@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <title>Signup</title>
+    <link rel="stylesheet" type="text/css" href="css.css">
+</head>
+
+<body>
+    <div id='MainBody' class="user">
+        <form class="form" method="POST" action='http://127.0.0.1:8081/registration'>
+            <div class="w3-row-padding">
+                <div class="w3-half">
+                    <input class="form__input" onkeyup="checkinput(this)" required="required" type="text" name="firstname" id='fname' placeholder="First Name" /><br />
+                </div>
+                <div class="w3-half">
+                    <input class="form__input" onkeyup="checkinput(this)" required="required" type="text" placeholder='Last Name' name="lastname" id="lname" /><br />
+                </div>
+            </div>
+            <div class="w3-row-padding">
+                <div class="w3-half" style="width: 100%;">
+                    <input class="form__input" onkeyup="checkinput(this)" required="required" type="text" placeholder="User Name" name="username" id="uname" /><br />
+                </div>
+            </div>
+            <div class="w3-row-padding">
+                <div class="w3-half">
+                    <input class="form__input" onkeyup="checkinput(this)" required="required" type="email" name="email" placeholder="Email Id" id='email' /><br />
+                </div>
+                <div class="w3-half">
+                    <input class="form__input" placeholder="Phone Number" onkeyup="checkinput(this)" required="required" type="text" name="phone" id='pno' /><br />
+                </div>
+            </div>
+            <div class="w3-row-padding">
+                <div class="w3-half">
+                    <input class="form__input" onkeyup="checkinput(this)" required="required" type="password" placeholder="Enter Password" name="password" id='pass1' /><br />
+                </div>
+                <div class="w3-half">
+                    <input class="form__input" onkeyup="checkinput(this)" required="required" type="password" placeholder="Enter Password Again" name="password2" id='pass2' /><br />
+                </div>
+            </div>
+            <div class="w3-row-padding">
+                <div class="w3-half" style="width: 100%;">
+                    <input class="btn" type="submit" value="Register" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
