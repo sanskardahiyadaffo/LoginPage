@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const api = require('./api');
-let ObjectId = require('mongoose').Types.ObjectId;
 router.get(`/`, (req, res) => {
     res.render('index.htm');
     //    res.end(`Home Page`);
@@ -24,16 +23,20 @@ router
 
             delete userdata.firstname;
             delete userdata.lastname;
-            userdata._id = new ObjectId(userdata._id);
             // console.log(userdata);
-            let Validation1 = await api.updateData(userdata);
-            let outputdata = await api.getdata(userdata);
+            let Validation1 = await api.updateData(userdata);//update user data
+            Validation1.name = Validation1.username;
+            let outputdata = await api.getdata(Validation1);
             personaldata = outputdata;
             res.render('final.htm', { data: personaldata })
             personaldata = {}
 
         }
-        catch (err) { console.log(err); res.redirect('/') }
+        catch (err) {
+            console.log('Error found on updation');
+            console.log(err);
+            res.redirect('/')
+        }
 
     })
     .get((req, res) => {

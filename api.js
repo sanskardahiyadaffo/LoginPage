@@ -1,4 +1,5 @@
 const myDB = require('./schema');
+const ObjectId = require('mongoose').Types.ObjectId;
 module.exports = {
     adduser: userdata => new Promise((resolve, reject) => {
         myDB.create(userdata, (err, result) => {
@@ -13,12 +14,16 @@ module.exports = {
     updateData: (mydata) => new Promise((resolve, reject) => {
         let id = mydata._id;
         delete mydata._id;
-        console.log(mydata);
-        myDB.update({ _id: id }, mydata, (err, data) => {
+        delete mydata.password2;
+        delete mydata.password3;
+        // console.log(mydata);
+
+        myDB.updateOne({ _id: new ObjectId(id) }, mydata, (err, data) => {
             if (err) {
                 reject('/updateData: Database Error');
             } else {
-                resolve('Update Sucessful');
+                //console.log(data);
+                resolve(mydata);
             }
         });
     }),

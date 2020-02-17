@@ -43,8 +43,7 @@
             justify-content: flex-start;
         }
 
-        #_id,
-        #updateData {
+        #_id {
             display: none;
         }
     </style>
@@ -53,6 +52,7 @@
 <body>
     <div class="limiter">
         <div class="container-login100">
+
             <div id="updateData" class="wrap-login100">
                 <form class="login100-form validate-form" method="POST" action="update">
                     <input type="text" id="_id" name='_id' value="<%= data._id%>" />
@@ -150,7 +150,7 @@
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
                                 <div class="login100-form-bgbtn"></div>
-                                <button class="login100-form-btn" onclick="updateData()">
+                                <button class="login100-form-btn" onclick="location.href='index.htm'">
                                     Edit Profile
                                 </button>
                             </div>
@@ -183,12 +183,6 @@
     <script src="vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
-    <script>
-        function updateData() {
-            document.getElementById('updateData').style.display = 'block';
-            document.getElementById('showData').style.display = 'none';
-
-        }</script>
 </body>
 
 </html>
