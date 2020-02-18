@@ -1,0 +1,190 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-size:18px;
+
+}
+@keyframes personMovingUp {
+    from{
+        top:0;
+        opacity: 1;
+    }
+    to{
+        top:-50%;
+        opacity: 0;
+    }
+    
+}
+@keyframes boatMovingLeft {
+    from{
+        right: 70%;
+        left: auto;
+    }
+    to{
+        right: 0;
+        left:auto;
+    }
+    
+}
+@keyframes boatMovingRight {
+    from{
+        left:70%;
+        right:auto;
+    }
+    to{
+        left: 0;
+        right:auto;
+    }
+    
+}
+@keyframes personMovingDown {
+    from{
+        top:-50%;
+        opacity: 0;
+    }
+    to{
+        top:0;
+        opacity: 1;
+    }
+    
+}
+.person{
+    position: relative;
+    box-sizing: border-box;
+    height: 116px;
+    width:52px;
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0px;
+    font-family: serif;
+    margin: 0 10%;
+    animation-duration: 0.5s;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.person>span{
+    display: none;
+    position: absolute;
+    left:-50%;
+    bottom:100%;
+    font-size:12px;
+    color:white;
+    width:100px;
+    padding:5px;
+    border-radius: 10px;
+    height: auto;
+    text-align: center;
+    background-color: rgba(0,0,0,0.7);
+
+}
+.person:hover{
+    opacity:0.5;
+}
+#Side2 > .person{
+    transform: scaleX(-1);
+}
+#Side1 > .person{
+    transform: scaleX(1);
+}
+#Side1,#Side2{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: wrap;
+    }
+#MainBody{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width:100%; 
+}
+#MainBody > div{
+    position: relative;
+    width:40%;
+    min-height: 500px;
+    overflow: hidden;
+}
+#SideC{
+    width:60% !important;
+    background-image: url('../images/ocean.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-color: rgb(71, 145, 241);
+}
+button{
+    background-color: darkgray;
+    color:black;
+    padding: 12px 16px;
+}
+#SideC button{
+    position: absolute; 
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+#SideC #startbtn{
+    bottom: 0;
+}
+#SideC > #Rules_Alert{
+    position: absolute;
+    width: 100%;
+    margin:auto;
+    padding: 5%;
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
+}
+#Boat_{
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    height: 100px;
+    bottom: 10%;
+    width: 150px;
+    overflow: visible;
+    background-image: url('../images/boat.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation-duration: 1s;
+    justify-content: center;
+    border-radius: 100%;
+}
+#resetBtn {
+    display: none;
+}
+#resetBtn button{
+    background-color: #cacaca;
+    padding: 8px 10px;
+}
+#LeaderBoardTable,th,tr,td,thead{
+    border:1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+    text-align: center;
+}
+#Details{
+    position: absolute;
+    width: 50%;
+    right: 0;
+    text-align: right;
+    bottom:0;
+
+}
+#Header{
+    position: relative;
+    width: 100%;
+}
+#Header> span{
+width:10%;
+}
+#Header> div span{
+    border-right: 3px solid black;
+    padding: 0 2%;
+}
+

@@ -1,4 +1,5 @@
-const myDB = require('./schema');
+const DB = require('./schema');
+const myDB = DB.loginDB;
 const ObjectId = require('mongoose').Types.ObjectId;
 module.exports = {
     adduser: userdata => new Promise((resolve, reject) => {
@@ -66,5 +67,36 @@ module.exports = {
                 }
             }
         });
-    })
+    }),
+
+    getDataOfScoreboard: () => new Promise((resolve, reject) => {
+        DB.scoreDB.aggregate([
+            {$sort:{score:-1}}
+        ], (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        });
+    }),
+
+    addUserToScoreBoard: (data = false) => new Promise((resolve, reject) => {
+        try {
+            DB.scoreDB.create({
+                username: data.name,
+                score: data.score,
+                gamename: data.gamename,
+            }, (err, result) => {
+                if (err) {
+                    console.log('Insertion Failed To ScoreBoard');
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            });
+        } catch (err) {
+            reject(err);
+        }
+    }),
 }

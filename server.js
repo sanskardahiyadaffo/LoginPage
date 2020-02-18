@@ -8,6 +8,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use('/myfiles', express.static("webpage"));
+app.use('/Game1', express.static("Saints_And_Cannibels"));
 
 app.engine('htm', ejs.renderFile);
 app.engine('html', ejs.renderFile);

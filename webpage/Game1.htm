@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Saints and Cannibals</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="myfiles/css/Saints_.css" />
+</head>
+
+<body>
+    <div id="Header">
+        <div>
+            <h1>Saints and Cannibals</h1>
+        </div>
+        <div id='Details'>
+            <span id='resetBtn'><button onclick="resetTheGame();">Reset</button></span>
+            <span id='userName'><%=data.username%></span>
+            <span id='timing'>hh:mm:ss</span>
+        </div>
+    </div>
+    <div id="MainBody">
+        <div id="Side1">
+            <div class='person' style="background-image: url('myfiles/images/hero.png');">S<span>Some Text for B</span>
+            </div>
+        </div>
+        <div id="SideC">
+            <div id="Rules_Alert">Rules are here:<br /><br />
+                There are three saints and three cannibals who wants to cross a river
+                using a boat which can carry at most two people, under the constraint that,
+                for both banks, that the saints present on the bank cannot be
+                outnumbered by cannibals. The boat cannot cross the river by
+                itself with no people on board.
+
+            </div>
+            <button id='startbtn' onclick="startTheMatch(this);">Click to Start</button>
+        </div>
+        <div id="Side2">
+            <div class='person' style="background-image: url('myfiles/images/villen.png');">V<span>Some Text for
+                    B</span></div>
+        </div>
+    </div>
+    </div>
+</body>
+<script src="myfiles/scripts/Saints_.js">
+</script>
+
+</html>

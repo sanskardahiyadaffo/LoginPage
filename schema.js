@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const mySchema = mongoose.Schema({
     username: String,
     name: {
@@ -13,5 +14,17 @@ const mySchema = mongoose.Schema({
     {
         versionKey: false
     });
+const myScoreSchema = mongoose.Schema({
+    username: String,
+    score: Number,
+    gamename: String,
 
-module.exports = mongoose.model('loginpage', mySchema);
+},
+    {
+        versionKey: false
+    });
+
+module.exports = {
+    loginDB: mongoose.model('loginpage', mySchema),
+    scoreDB: mongoose.model('scoreboard', myScoreSchema),
+}

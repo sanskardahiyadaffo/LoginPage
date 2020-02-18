@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="myfiles/images/icons/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="myfiles/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="myfiles/css/util.css">
+    <link rel="stylesheet" type="text/css" href="myfiles/css/main.css">
+    <!--===============================================================================================-->
+    <style>
+        .extralinks>div {
+            min-width: 100px;
+        }
+
+        .extralinks {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-wrap: wrap;
+            padding-top: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <!--Query to fetch result in sorted order 
+    db.test4.aggregate([{$sort:{scr:-1}},
+    {$group:{_id:'$gm',name:{$push:'$name'},scr:{$push:'$scr'}}}]) 
+    -->
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="text-center">
+                    <!-- Enter dataset here; var: data -->
+
+
+                </div>
+                <div class="text-center p-t-115">
+                    <div id='templete'><a href='/'>Created and Maintained by Sanskar Dahiya</a href='login'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="myfiles/jquery/jquery-3.2.1.min.js"></script>
+    <script src="myfiles/js/main.js"></script>
+</body>
+
+</html>
