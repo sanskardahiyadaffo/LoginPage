@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const api = require('./api');
-const CookieTimeout = 10000;
+const CookieTimeout = 1000 * 20;
 let customUserName = '';
 
 //Home Page
@@ -19,13 +19,14 @@ router
         }
     });
 
-router.get('/signup', (req, res) => {
-    //signup page
-    console.log('Signup is Called');
-    //clear coookie if exists..!!
-    res.clearCookie('MyCookie');
-    res.render('register.htm');//registration page
-});
+router
+    .get('/signup', (req, res) => {
+        //signup page
+        console.log('Signup is Called');
+        //clear coookie if exists..!!
+        res.clearCookie('MyCookie');
+        res.render('register.htm');//registration page
+    });
 
 router
     .get('/signout', (req, res) => {
@@ -52,6 +53,8 @@ router
             // console.log(userdata);
             // To verify password; Raise error if invalid
             let outputdata = await api.getdata({ name: userdata.username, password: userdata.password3 });
+            //if not new password then assign old password to password
+            userdata.password = userdata.password || userdata.password3;
             // update user data; Raise error if invalid
             let Validation1 = await api.updateData(userdata);
             // Assign name as username to capture user data
@@ -69,6 +72,7 @@ router
         } catch (err) {
             console.log('Error found on updation');
             // console.log(err);
+            res.clearCookie('MyCookie');
             res.send('<script>alert("Password is not correct\\n Please Login Again");location.href="/";</script>');
         }
     })
@@ -91,9 +95,11 @@ router
             //Validate EMAIL; Raise error if invalid
             let Validation1 = await api.getValidation(userdata.email, 'email');
             // console.log(Validation);
+
             //Validate USERNAME; Raise error if invalid
             let Validation2 = await api.getValidation(userdata.username, 'username');
             // console.log(Validation);
+
             // Insert data into database
             let output = await api.adduser(userdata);
             console.log("Registration Done ", output);
@@ -101,7 +107,7 @@ router
             res.cookie("MyCookie", output, { maxAge: CookieTimeout });
             res.redirect('/');
         } catch (err) {
-            console.log('Data Validation Failed at database')
+            console.log('Data Validation Failed at database');
             res.send('<script> alert("Username or Email already exists\\nPlease Re-Enter data");location.href="registration";</script>');
         }
     })
@@ -136,10 +142,9 @@ router
         if (req.cookies.MyCookie) {
             // console.log(i++, req.mongocookies.MyCookie);
             res.render('final.htm', { data: req.cookies.MyCookie });
-
         } else {
             // console.log('Session Expired');
-            res.redirect('/');
+            res.send('<script> alert("Session Expired");location.href="/";</script>');
         }
     });
 
@@ -151,8 +156,10 @@ router
             res.send('Error here..!!');
         } catch (err) {
             res.render('alldata.htm', { data: err });
+            console.log(data);
         }
     });
+
 router
     .all('*', (req, res) => {
         // All Extra pages

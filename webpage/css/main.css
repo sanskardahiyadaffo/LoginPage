@@ -1,5 +1,6 @@
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
+
 @font-face {
   font-family: Poppins-Regular;
   src: url('../fonts/poppins/Poppins-Regular.ttf');
@@ -20,20 +21,25 @@
   src: url('../fonts/poppins/Poppins-SemiBold.ttf');
 }
 
+
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
+
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
   height: 100%;
   font-family: Poppins-Regular, sans-serif;
 }
 
+
 /*---------------------------------------------*/
+
 a {
   font-family: Poppins-Regular;
   font-size: 14px;
@@ -49,9 +55,11 @@ a {
 a:focus {
   outline: none !important;
 }
-input:disabled{
-  background-color: rgba(0,0,0,0.1);
+
+input:disabled {
+  background-color: rgba(0, 0, 0, 0.1);
 }
+
 a:hover {
   text-decoration: none;
   color: #6a7dfe;
@@ -61,8 +69,15 @@ a:hover {
   color: linear-gradient(left, #21d4fd, #b721ff);
 }
 
+
 /*---------------------------------------------*/
-h1, h2, h3, h4, h5, h6 {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0px;
 }
 
@@ -74,12 +89,15 @@ p {
   margin: 0px;
 }
 
-ul, li {
+ul,
+li {
   margin: 0px;
   list-style-type: none;
 }
 
+
 /*---------------------------------------------*/
+
 input {
   outline: none;
   border: none;
@@ -90,7 +108,8 @@ textarea {
   border: none;
 }
 
-textarea:focus, input:focus {
+textarea:focus,
+input:focus {
   border-color: transparent !important;
 }
 
@@ -158,7 +177,9 @@ textarea:-ms-input-placeholder {
   color: #adadad;
 }
 
+
 /*---------------------------------------------*/
+
 button {
   outline: none !important;
   border: none;
@@ -173,8 +194,10 @@ iframe {
   border: none !important;
 }
 
+
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
+
 .txt1 {
   font-family: Poppins-Regular;
   font-size: 13px;
@@ -189,8 +212,10 @@ iframe {
   line-height: 1.5;
 }
 
+
 /*//////////////////////////////////////////////////////////////////
 [ login ]*/
+
 .limiter {
   width: 100%;
   margin: 0 auto;
@@ -215,7 +240,7 @@ iframe {
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
-  padding: 77px 55px 33px 55px;
+  padding: 60px 50px 30px 50px;
   box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
@@ -223,8 +248,10 @@ iframe {
   -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
+
 /*------------------------------------------------------------------
 [ Form ]*/
+
 .login100-form {
   width: 100%;
 }
@@ -242,8 +269,10 @@ iframe {
   font-size: 60px;
 }
 
+
 /*------------------------------------------------------------------
 [ Input ]*/
+
 .wrap-input100 {
   width: 100%;
   position: relative;
@@ -274,7 +303,9 @@ iframe {
   padding: 0 5px;
 }
 
+
 /*---------------------------------------------*/
+
 .focus-input100 {
   position: absolute;
   display: block;
@@ -338,7 +369,9 @@ iframe {
   width: 100%;
 }
 
+
 /*---------------------------------------------*/
+
 .btn-show-pass {
   font-size: 15px;
   color: #999999;
@@ -376,8 +409,10 @@ iframe {
   color: linear-gradient(left, #21d4fd, #b721ff);
 }
 
+
 /*------------------------------------------------------------------
 [ Button ]*/
+
 .container-login100-form-btn {
   display: -webkit-box;
   display: -webkit-flex;
@@ -439,16 +474,20 @@ iframe {
   left: 0;
 }
 
+
 /*------------------------------------------------------------------
 [ Responsive ]*/
+
 @media (max-width: 576px) {
   .wrap-login100 {
     padding: 77px 15px 33px 15px;
   }
 }
 
+
 /*------------------------------------------------------------------
 [ Alert validate ]*/
+
 .validate-input {
   position: relative;
 }
@@ -502,6 +541,20 @@ iframe {
 .alert-validate:hover:before {
   visibility: visible;
   opacity: 1;
+}
+
+#templete a {
+  text-decoration: none;
+}
+
+#templete {
+  padding-top: 5%;
+  /* position: fixed;
+  width: 100%;
+  top: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center; */
 }
 
 @media (max-width: 992px) {

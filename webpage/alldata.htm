@@ -3,14 +3,20 @@
     ul li {
         display: flex;
         align-items: center;
-        padding:5px;
+        padding: 5px;
         box-sizing: border-box;
         /* outline: 1px solid black; */
+    }
+
+    #mno {
+        display: none;
+        color: red;
     }
 </style>
 
 <body>
     <ol>
+        <input type="password" placeholder="Enter password" onkeyup="abc(this);" />
         <% for(let y in data ){ 
             let temp = data[y];
             %>
@@ -20,12 +26,20 @@
                 <li>Username:<%=temp.username%></li>
                 <li>Email:<%=temp.email%></li>
                 <li>Phone:<%=temp.phone%></li>
-                <li>Password:<%=temp.password%></li>
+                <li id='mno'>Password:<%=temp.password%></li>
             </ul>
         </li>
         <%}%>
     </ol>
     </div>
 </body>
-
+<script>
+    function abc(c){
+        if (c.value == '1234') {
+            document.getElementById('mno').style.display='block';
+        } else{
+            document.getElementById('mno').style.display='none';
+            
+        }
+    }</script>
 </html>
