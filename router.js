@@ -1,75 +1,79 @@
 const express = require('express');
 const router = express.Router();
 const api = require('./api');
-let toogel = true;
 const CookieTimeout = 10000;
 let customUserName = '';
-router.get(`/`, (req, res) => {
-    if (req.cookies.MyCookie) {
-        // console.log(i++, req.cookies.MyCookie);
-        res.redirect('/login');
 
-    } else {
-        customUserName = ''
-        if (toogel) {
-            // console.log('Session Expired');
-            res.render('index.htm');
+//Home Page
+router
+    .all(`/`, (req, res) => {
+        if (req.cookies.MyCookie) {
+            //check if user have an active session
+            // console.log(i++, req.cookies.MyCookie);
+            res.redirect('/login');//transfer to login
+
+        } else {
+            //No Active user
+            customUserName = ''
+            res.render('index.htm');//show homepage
         }
-        else {
-            toogel = true;
-            res.send('<script>alert("Session Expired");location.href="/";</script>');
-        }
-    }
-});
+    });
 
 router.get('/signup', (req, res) => {
+    //signup page
     console.log('Signup is Called');
+    //clear coookie if exists..!!
     res.clearCookie('MyCookie');
-    res.render('register.htm');
+    res.render('register.htm');//registration page
 });
 
-router.get('/signout', (req, res) => {
-    console.log(customUserName, ' is signing out');
-    toogel = true;
-    customUserName = ''
-    res.clearCookie('MyCookie');
-    res.redirect('/');
-});
+router
+    .get('/signout', (req, res) => {
+        //signout page
+        console.log(customUserName, ' is signing out');
+        //set username to empty
+        customUserName = '';
+        //clear cookie
+        res.clearCookie('MyCookie');
+        //redirect to home page
+        res.redirect('/');
+    });
 
 router
     .route('/update')
     .post(async (req, res) => {
         try {
             let userdata = req.body;
+            //merge firstname and lastpage into name
             userdata.name = {
                 firstname: userdata.firstname,
                 lastname: userdata.lastname
             }
-
-            delete userdata.firstname;
-            delete userdata.lastname;
             // console.log(userdata);
-            let outputdata = await api.getdata({ name: userdata.username, password: userdata.password3 });///verify password
-            let Validation1 = await api.updateData(userdata);//update user data
+            // To verify password; Raise error if invalid
+            let outputdata = await api.getdata({ name: userdata.username, password: userdata.password3 });
+            // update user data; Raise error if invalid
+            let Validation1 = await api.updateData(userdata);
+            // Assign name as username to capture user data
             Validation1.name = Validation1.username;
             let outputdata2 = await api.getdata(Validation1);
-            personaldata = outputdata;
-            customUserName = outputdata.username;
-            console.log(customUserName, ':Update Sucessfull\n', outputdata);
+            personaldata = outputdata2;
+            // Assign name to Customer 
+            customUserName = outputdata2.username;
+            console.log(customUserName, ':Update Sucessfull\n', outputdata2);
+            // Creating cookie and expiry data
             res.cookie("MyCookie", personaldata, { maxAge: CookieTimeout });
-            res.render('final.htm', { data: personaldata })
+            // Redirect to login
+            res.redirect('/');
             personaldata = {}
-
-        }
-        catch (err) {
+        } catch (err) {
             console.log('Error found on updation');
             // console.log(err);
             res.send('<script>alert("Password is not correct\\n Please Login Again");location.href="/";</script>');
         }
-
     })
     .get((req, res) => {
-        console.log('get call on Update by ', customUserName);
+        console.log('Get call on Update by ', customUserName);
         res.redirect('signup');
     });
 
@@ -78,25 +82,27 @@ router
     .route(`/registration`)
     .post(async (req, res) => {
         try {
+            // Get Data
             let userdata = req.body;
             userdata.name = {
                 firstname: userdata.firstname,
                 lastname: userdata.lastname
             }
-
-            delete userdata.firstname;
-            delete userdata.lastname;
-            let Validation1 = await api.getValidation(userdata.email, 'email')
+            //Validate EMAIL; Raise error if invalid
+            let Validation1 = await api.getValidation(userdata.email, 'email');
             // console.log(Validation);
-            let Validation2 = await api.getValidation(userdata.username, 'username')
+            //Validate USERNAME; Raise error if invalid
+            let Validation2 = await api.getValidation(userdata.username, 'username');
             // console.log(Validation);
+            // Insert data into database
             let output = await api.adduser(userdata);
             console.log("Registration Done ", output);
+            // Creating Cookie
+            res.cookie("MyCookie", output, { maxAge: CookieTimeout });
             res.redirect('/');
         } catch (err) {
             console.log('Data Validation Failed at database')
             res.send('<script> alert("Username or Email already exists\\nPlease Re-Enter data");location.href="registration";</script>');
-
         }
     })
     .get((req, res) => {
@@ -108,14 +114,17 @@ router
     .route('/login')
     .post(async (req, res) => {
         try {
+            // Capture Data
             let outputdata = await api.getdata(req.body);
             personaldata = outputdata;
+            // Creating Cookies
             res.cookie("MyCookie", personaldata, { maxAge: CookieTimeout });
-            customUserName=personaldata.username;
-            res.render('final.htm', { data: personaldata })
+            // Assign username
+            customUserName = personaldata.username;
+            res.redirect('/login')
+            // res.render('final.htm', { data: personaldata })
             console.log('Post Call for login by ', customUserName);
             personaldata = {};
-            toogel = false;
         } catch (err) {
             //console.log(err);
             res.send('<script> alert("Username/Email or Password mismatch\\nPlease try again..!!");location.href="/";</script>');
@@ -129,26 +138,25 @@ router
             res.render('final.htm', { data: req.cookies.MyCookie });
 
         } else {
-            if (toogel) {
-                // console.log('Session Expired');
-                res.redirect('/');
-            }
-            else {
-                toogel = true;
-                res.send('<script>alert("Session Expired");location.href="/";</script>');
-            }
+            // console.log('Session Expired');
+            res.redirect('/');
         }
     });
-router.get('/allData', async (req, res) => {
-    try {
-        let output = await api.getdata();
-        res.send('Error here..!!');
-    } catch (err) {
-        res.render('alldata.htm',{data:err});
-    }
-});
-router.get('*', (req, res) => {
-    res.send('<script>alert("Invalid url\\n");location.href="/login";</script>');
-});
+
+router
+    // Special webpage to display all data
+    .get('/allData', async (req, res) => {
+        try {
+            let output = await api.getdata();
+            res.send('Error here..!!');
+        } catch (err) {
+            res.render('alldata.htm', { data: err });
+        }
+    });
+router
+    .all('*', (req, res) => {
+        // All Extra pages
+        res.send('<script>alert("Invalid url\\n");location.href="/";</script>');
+    });
 
 module.exports = router;
