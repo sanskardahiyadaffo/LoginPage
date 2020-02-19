@@ -1,4 +1,5 @@
 module.exports = {
+    //credentials
     google: {
         id: 'Your Google Client ID',
         secret: 'Your Google Client Secret',
