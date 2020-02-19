@@ -3,7 +3,7 @@ Web login/authentication page using nodeJS and mongodb
 
 
 create a keys.js file and copy paste the code
-
+<pre>
 module.exports = {
     //credentials
     google: {
@@ -19,3 +19,4 @@ module.exports = {
     }
     
 }
+</pre>
