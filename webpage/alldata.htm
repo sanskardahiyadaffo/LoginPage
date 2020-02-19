@@ -8,7 +8,7 @@
         /* outline: 1px solid black; */
     }
 
-    #mno {
+    .mno {
         display: none;
         color: red;
     }
@@ -26,7 +26,7 @@
                 <li>Username:<%=temp.username%></li>
                 <li>Email:<%=temp.email%></li>
                 <li>Phone:<%=temp.phone%></li>
-                <li id='mno'>Password:<%=temp.password%></li>
+                <li class='mno'>Password:<%=temp.password%></li>
             </ul>
         </li>
         <%}%>
@@ -34,12 +34,18 @@
     </div>
 </body>
 <script>
-    function abc(c){
-        if (c.value == '1234') {
-            document.getElementById('mno').style.display='block';
-        } else{
-            document.getElementById('mno').style.display='none';
-            
+    function abc(c) {
+        let dataa;
+        if (c.value == 'l') {
+            dataa = 'block';
+        } else {
+            dataa = 'none';
+
+        }
+        let myElements = document.querySelectorAll(".mno");
+
+        for (let i = 0; i < myElements.length; i++) {
+            myElements[i].style.display = dataa;
         }
     }</script>
 </html>

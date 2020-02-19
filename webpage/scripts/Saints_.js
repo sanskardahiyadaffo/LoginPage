@@ -34,7 +34,12 @@ Input: null
 Output: null
 */
 function UpdateGameTimer() {
-    displaytimerspan.innerHTML = `${playingHours}:${playingMinutes}:${playingSeconds}`;
+    let secs = playingSeconds.toString();
+    let mints = playingMinutes.toString();
+    secs = secs < 10 ? 0 + secs : secs;
+    mints = mints < 10 ? 0 + mints : mints;
+    // if()
+    displaytimerspan.innerHTML = `0${playingHours}:${mints}:${secs}`;
 
     playingSeconds += 1;//increment
     if (playingSeconds == 60) {//reseting
@@ -66,7 +71,7 @@ function startTheMatch(btn_) {
     initialHeight = '';
     initialWidth = '';
     //enable reset btn
-    document.getElementById(`resetBtn`).style.display = `block`;
+    document.getElementById(`resetBtn`).style.visibility = `visible`;
     //Starting timer
     try {
         clearInterval(timerStart);//Clear timer if any

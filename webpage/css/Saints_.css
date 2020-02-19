@@ -1,13 +1,8 @@
 body {
-  margin: 0;
+  margin: 10px;
   padding: 0;
   min-width: 800px;
-  min-height: 800px;
   font-size: 18px;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 @keyframes personMovingUp {
@@ -188,10 +183,11 @@ button {
   color: black;
 }
 
-#resetBtn {
+
+/* #resetBtn {
   background-color: #cacaca;
   padding: 8px 10px;
-}
+} */
 
 #resetBtn button {
   background-color: #cacaca;
@@ -224,8 +220,11 @@ thead {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 2% 0 0;
+  text-align: center;
+  /* padding: 0 2% 0 0; */
+  margin: 0 auto;
   min-height: 50px;
+  min-width: 50px;
 }
 
 #Header>div:first-child {
@@ -240,12 +239,12 @@ thead {
   position: relative;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
   flex-wrap: wrap;
-  padding: 1% 2% 0;
+  padding: 10px 2%;
   border-bottom: 5px solid red;
   border-top: 5px solid red;
   border-radius: 100px;
+  margin-bottom: 5px;
 }
 
 #Header>span {
@@ -254,11 +253,12 @@ thead {
 
 #Header>div span {
   border-right: 3px solid black;
-  /* padding: 0 2%; */
+  border-left: 3px solid white;
+  min-width: 90px;
 }
 
 #resetBtn {
-  display: none;
+  visibility: hidden;
 }
 
 @media(max-width:850px) {

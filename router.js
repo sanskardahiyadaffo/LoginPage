@@ -55,8 +55,10 @@ router
             // To verify password; Raise error if invalid
             let outputdata = await api.getdata({ name: userdata.email, password: userdata.password3 });
             //if not new password then assign old password to password
-            userdata.password = userdata.password || userdata.password3;
-            console.log('New Password', userdata.password);
+            if (userdata.password)
+                console.log('New Password', userdata.password);
+            else
+                userdata.password = userdata.password3;
             // update user data; Raise error if invalid
             let Validation1 = await api.updateData(userdata);
             // Assign name as username to capture user data
@@ -131,7 +133,7 @@ router
             customUserName = personaldata.username;
             res.redirect('/login')
             // res.render('final.htm', { data: personaldata })
-            console.log('Post Call for login by ', customUserName);
+            console.log('Post Call for /login by ', customUserName);
             personaldata = {};
         } catch (err) {
             //console.log(err);
@@ -140,7 +142,7 @@ router
         }
     })
     .get(async (req, res) => {
-        console.log('Get Call for login by ', customUserName);
+        console.log('Get Call for /login by ', customUserName);
         if (req.cookies.MyCookie) {
             // console.log(i++, req.mongocookies.MyCookie);
             res.render('final.htm', { data: req.cookies.MyCookie });
@@ -158,7 +160,7 @@ router
             res.send('Error here..!!');
         } catch (err) {
             res.render('alldata.htm', { data: err });
-            console.log(data);
+            console.log(err);
         }
     });
 
