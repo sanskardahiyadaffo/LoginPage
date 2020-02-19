@@ -35,6 +35,7 @@ router
         //set username to empty
         customUserName = '';
         //clear cookie
+        req.logOut();
         res.clearCookie('MyCookie');
         //redirect to home page
         res.redirect('/');
@@ -52,9 +53,10 @@ router
             }
             // console.log(userdata);
             // To verify password; Raise error if invalid
-            let outputdata = await api.getdata({ name: userdata.username, password: userdata.password3 });
+            let outputdata = await api.getdata({ name: userdata.email, password: userdata.password3 });
             //if not new password then assign old password to password
             userdata.password = userdata.password || userdata.password3;
+            console.log('New Password',userdata.password);
             // update user data; Raise error if invalid
             let Validation1 = await api.updateData(userdata);
             // Assign name as username to capture user data

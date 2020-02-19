@@ -10,6 +10,12 @@ const credentials = require('./keys');
 //For post request
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+
+// Using passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 //using cookies
 app.use(cookieParser());
 app.use(cookieSession({
@@ -29,9 +35,10 @@ app.set('views', __dirname + '/webpage');
 
 
 //Routings
+const auth = require('./passport').auth
+app.use('/auth', auth);
 const router = require('./router');
 app.use('/', router);
-
 //Database Connection
 const mongoose = require('mongoose');
 mongoose.connect(credentials.mongoose.url,

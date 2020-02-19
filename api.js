@@ -34,7 +34,10 @@ module.exports = {
             } else {
                 data = data[0]
                 if (data)
-                    reject('User Exists')
+                    reject({
+                        name: 'Already Exists',
+                        value: data,
+                    });
                 else
                     resolve('Permission Access');
             }
@@ -71,7 +74,7 @@ module.exports = {
 
     getDataOfScoreboard: () => new Promise((resolve, reject) => {
         DB.scoreDB.aggregate([
-            {$sort:{score:-1}}
+            { $sort: { score: -1 } }
         ], (err, data) => {
             if (err) {
                 reject(err);
