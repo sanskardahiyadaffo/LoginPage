@@ -14,6 +14,8 @@ const mySchema = mongoose.Schema({
     {
         versionKey: false
     });
+
+
 const myScoreSchema = mongoose.Schema({
     username: String,
     score: Number,

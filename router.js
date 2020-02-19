@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const api = require('./api');
-const CookieTimeout = 1000 * 20;
+const CookieTimeout = require('./keys').cookie.timeOut;
 let customUserName = '';
 
 //Home Page
