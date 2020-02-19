@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-row">
                         <div class="wrap-input100 form-half validate-input" data-validate="Valid email is: a@b.c">
-                            <input class="input100 has-val" type="text" value='<%=data.email%>' name="email" disabled/>
+                            <input class="input100 has-val" type="text" value='<%=data.email%>' name="email" disabled />
                             <span class="focus-input100" data-placeholder="Email"></span>
                         </div>
                         <div class="wrap-input100 form-half validate-input" data-validate="Enter Phone Number">
@@ -117,6 +117,9 @@
                             </div>
                         </div>
                     </div>
+                    <!-- <div class='text-center' id='templete' style="padding-top:5%;"><a href='/'>Created and Maintained by
+                            Sanskar Dahiya</a href='login'></div> -->
+
                 </form>
             </div>
             <div id="showData" class="wrap-login100">
@@ -159,6 +162,15 @@
                         </div>
                     </div>
                 </div>
+                <div class='text-center' id='templete' style="padding-top:5%;"><a href='/'>Created and Maintained by
+                        Sanskar Dahiya</a href='login'></div>
+            </div>
+            <div id="showData2" class="wrap-login100">
+                <div id='Gamebar'><a>MY GAMES</a></div>
+                <div id='gameList'>
+                    <div class="gamename"><a href="/game">Saints Ans Cannibels</a></div>
+                    <div class="gamename"><a>will be added</a></div>
+                </div>
             </div>
         </div>
     </div>
@@ -169,13 +181,13 @@
     <script>
         function updateData(c) {
             if (c) {
-
-
                 document.getElementById('updateData').style.display = 'none';
                 document.getElementById('showData').style.display = 'block';
+                document.getElementById('showData2').style.display = 'block';
             } else {
                 document.getElementById('updateData').style.display = 'block';
                 document.getElementById('showData').style.display = 'none';
+                document.getElementById('showData2').style.display = 'none';
             }
 
         }</script>

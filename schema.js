@@ -18,7 +18,7 @@ const mySchema = mongoose.Schema({
 
 const myScoreSchema = mongoose.Schema({
     username: String,
-    score: Number,
+    score: String,
     gamename: String,
 
 },

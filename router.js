@@ -56,7 +56,7 @@ router
             let outputdata = await api.getdata({ name: userdata.email, password: userdata.password3 });
             //if not new password then assign old password to password
             userdata.password = userdata.password || userdata.password3;
-            console.log('New Password',userdata.password);
+            console.log('New Password', userdata.password);
             // update user data; Raise error if invalid
             let Validation1 = await api.updateData(userdata);
             // Assign name as username to capture user data
@@ -170,8 +170,8 @@ router
             res.render('Game1.htm', { data: req.cookies.MyCookie });
         } else {
             // console.log('Session Expired');
-            res.render('Game1.htm', { data: { username: 'Unknown' } });
-            // res.send('<script> alert("Session Expired");location.href="/";</script>');
+            // res.render('Game1.htm', { data: { username: 'Unknown' } });
+            res.send('<script> alert("Session Expired");location.href="/";</script>');
         }
     });
 

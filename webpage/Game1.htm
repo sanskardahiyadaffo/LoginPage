@@ -11,12 +11,15 @@
 <body>
     <div id="Header">
         <div>
-            <h1>Saints and Cannibals</h1>
+            Saints and Cannibals
         </div>
         <div id='Details'>
-            <span id='resetBtn'><button onclick="resetTheGame();">Reset</button></span>
-            <span id='userName'><%=data.username%></span>
+            <span><button id='resetBtn' onclick="resetTheGame();">Reset</button></span>
+            <span id='logoutBtn'><a href='/signout'>Logout</a></span>
+            <span id='userName'
+                style="color: #6a7dfe;font-size: 20px;text-transform: uppercase;"><%=data.username%></span>
             <span id='timing'>hh:mm:ss</span>
+            <span id='logoutBtn'><a href='/scoreBoard'>ScoreBoard</a></span>
         </div>
     </div>
     <div id="MainBody">

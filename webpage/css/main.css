@@ -238,6 +238,7 @@ iframe {
 
 .wrap-login100 {
   background: #fff;
+  min-width: 500px;
   border-radius: 10px;
   overflow: hidden;
   padding: 60px 50px 30px 50px;
@@ -543,18 +544,56 @@ iframe {
   opacity: 1;
 }
 
+
+/* Custom CSS */
+
 #templete a {
   text-decoration: none;
 }
 
 #templete {
   padding-top: 5%;
-  /* position: fixed;
-  width: 100%;
-  top: 90%;
-  display: flex;
-  align-items: center;
-  justify-content: center; */
+}
+
+#showData2 {
+  position: fixed;
+  width: auto;
+  right: -210px;
+  min-width: 0%;
+  padding: 50px 10px 50px 0;
+  ;
+  flex-direction: row;
+  transition: 2s right;
+  z-index: 2;
+}
+
+.gamename a {
+  font-size: 16px;
+}
+
+#Gamebar a {
+  font-size: 20px;
+}
+
+#showData2:hover {
+  transition: 0.5s right;
+  right: 0;
+}
+
+#showData2:hover #Gamebar>a {
+  color: #6a7dfe;
+}
+
+#Gamebar {
+  padding: 10px;
+  margin-left: -5%;
+  transform: rotateZ(-90deg);
+  outline: 1px solid black;
+}
+
+.gamename {
+  padding: 0;
+  margin: 0;
 }
 
 @media (max-width: 992px) {
