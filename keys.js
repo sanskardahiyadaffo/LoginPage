@@ -1,15 +1,13 @@
 module.exports = {
-    //credentials
     google: {
-        id: 'Your Google Client ID',
-        secret: 'Your Google Client Secret',
+        id: '337434658676-ca5i4lvi75tqv87oo0rro71a319a1e4p.apps.googleusercontent.com',
+        secret: 'x8gCGKq43lTcYKbbrj12nn_Q',
     },
     mongoose: {
-        url: 'MongoDB database address',
+        url: 'mongodb://127.0.0.1:27017/nodeJS',
     },
     cookie: {
-        keys: 'Key name',
-        timeOut: 1000*60*60,//Max duration of cookie
-    }
-    
+        keys: 'SanskarDahiya',
+        timeOut: 1000 * 20,
+    },
 }
