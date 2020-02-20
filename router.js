@@ -56,8 +56,8 @@ router
             //if not new password then assign old password to password
             if (!userdata.password)
                 userdata.password = userdata.password3;
-            // else
-            // console.log('New Password', userdata.password);
+            else
+                console.log('New Password', userdata.password);
             // update user data; Raise error if invalid
             let Validation1 = await api.updateData(userdata);
             // console.log('3>', Validation1)
@@ -188,20 +188,20 @@ router
         // res.render('leaderBoard.htm');
     });
 
-router
-    .get('/', async (req, res) => {
-        try {
-            let mydata = {
-                gamename: 'Saints And Cannibel',
-                name: 'user5',
-                score: 100,
-            }
-            let output = await api.addUserToScoreBoard(mydata);
-            res.send(output);
-        } catch (output) {
-            res.send(output);
-        }
-    });
+// router
+//     .get('/addScoretoScoreBoard', async (req, res) => {
+//         try {
+//             let mydata = {
+//                 gamename: 'Saints And Cannibel',
+//                 name: 'user5',
+//                 score: 100,
+//             }
+//             let output = await api.addUserToScoreBoard(mydata);
+//             res.send(output);
+//         } catch (output) {
+//             res.send(output);
+//         }
+//     });
 
 router
     .all('*', (req, res) => {

@@ -7,13 +7,19 @@ const CookieTimeout = credentials.cookie.timeOut;
 const router = require('express').Router();
 router
     .route('/google')
-    .get(passport.authenticate('google', {
-        scope: ['profile', 'email']
+    .get((req, res, next) => {
+        console.log('Google Login is clicked');
+        next();
+    }, passport.authenticate('google', {
+        scope: ['profile', 'email'],
+        prompt: 'select_account',
     }));
-
+router.get('/error', () => {
+    console.log('Google signin error');
+})
 router
     .route('/google/CB')
-    .get(passport.authenticate('google'), (req, res) => {
+    .get(passport.authenticate('google', { failureRedirect: '/auth/error' }), (req, res) => {
         // console.log('Final Data',req.user);
         if (req.user)
             res.cookie("MyCookie", req.user, { maxAge: CookieTimeout });
@@ -43,6 +49,10 @@ passport.use(
         clientSecret: credentials.google.secret,
     },
         async (accessToken, refreshToken, profile, done) => {
+            // console.log('Access>', accessToken)
+            // console.log('refresh>', refreshToken)
+            console.log('profile>', profile)
+            // return 0;
             // console.log('callback function of passport-google');
             let user = {
                 username: profile.emails[0].value,
@@ -52,15 +62,17 @@ passport.use(
                 },
                 email: profile.emails[0].value,
                 password: profile.id,
-                phone:-1,
+                phone: -1,
+                photo: profile.photos[0].value,
             }
+            console.log(user);
             try {
                 let output = await api.getValidation(user.email, 'email');
                 output = await api.adduser(user);
                 console.log(output);
                 done(null, output);
             } catch (err) {
-                console.log('error in passport validation', err);
+                // console.log('error in passport validation', err);
                 if (err.name == 'Already Exists')
                     done(null, err.value);
                 else
