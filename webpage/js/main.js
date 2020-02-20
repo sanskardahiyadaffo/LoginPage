@@ -80,9 +80,9 @@ let value = '';
         }
         else {
             console.log($(input).attr('id'));
-            
+
             if ($(input).val().trim() == '') {
-                if($(input).attr('id')=='pass1' || $(input).attr('id')=='pass2'){
+                if ($(input).attr('id') == 'pass1' || $(input).attr('id') == 'pass2') {
                     return true
                 }
                 return false;

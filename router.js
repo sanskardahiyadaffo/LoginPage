@@ -51,16 +51,16 @@ router
                 firstname: userdata.firstname,
                 lastname: userdata.lastname
             }
-            // console.log(userdata);
             // To verify password; Raise error if invalid
             let outputdata = await api.getdata({ name: userdata.email, password: userdata.password3 });
             //if not new password then assign old password to password
-            if (userdata.password)
-                console.log('New Password', userdata.password);
-            else
+            if (!userdata.password)
                 userdata.password = userdata.password3;
+            // else
+            // console.log('New Password', userdata.password);
             // update user data; Raise error if invalid
             let Validation1 = await api.updateData(userdata);
+            // console.log('3>', Validation1)
             // Assign name as username to capture user data
             Validation1.name = Validation1.username;
             let outputdata2 = await api.getdata(Validation1);
@@ -75,7 +75,7 @@ router
             personaldata = {}
         } catch (err) {
             console.log('Error found on updation');
-            // console.log(err);
+            console.log(err);
             res.clearCookie('MyCookie');
             res.send('<script>alert("Password is not correct\\n Please Login Again");location.href="/";</script>');
         }

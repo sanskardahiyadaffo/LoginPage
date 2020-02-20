@@ -17,7 +17,8 @@
             <span id='resetBtn'><button onclick="resetTheGame();">Reset</button></span>
             <span id='logoutBtn'><a href='/signout'>Logout</a></span>
             <span id='userName'
-                style="color: #6a7dfe;font-size: 20px;text-transform: uppercase;"><%=data.username%></span>
+                style="text-decoration:none;color: #6a7dfe;font-size: 20px;text-transform: uppercase;"><a
+                    style="text-decoration:none;" href='/login'><%=data.username%></a></span>
             <span id='timing'>hh:mm:ss</span>
             <span id='logoutBtn'><a href='/scoreBoard'>ScoreBoard</a></span>
         </div>
