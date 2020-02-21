@@ -7,13 +7,15 @@ const CookieTimeout = credentials.cookie.timeOut;
 const router = require('express').Router();
 router
     .route('/google')
-    .get((req, res, next) => {
-        console.log('Google Login is clicked');
-        next();
-    }, passport.authenticate('google', {
-        scope: ['profile', 'email'],
-        prompt: 'select_account',
-    }));
+    .get(
+        (req, res, next) => {
+            console.log('Google Login is clicked');
+            next();
+        },
+        passport.authenticate('google', {
+            scope: ['profile', 'email'],
+            prompt: 'select_account',
+        }));
 router.get('/error', () => {
     console.log('Google signin error');
 })
@@ -23,7 +25,7 @@ router
         // console.log('Final Data',req.user);
         if (req.user)
             res.cookie("MyCookie", req.user, { maxAge: CookieTimeout });
-        res.redirect('/login')
+        res.redirect('user/login')
     });
 
 passport.serializeUser((user, done) => {
@@ -82,6 +84,4 @@ passport.use(
     )
 );
 
-module.exports = {
-    auth: router,
-}
+module.exports = router;

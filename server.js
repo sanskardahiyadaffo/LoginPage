@@ -32,10 +32,8 @@ app.engine('html', ejs.renderFile);
 app.set('view engine', 'htm');
 app.set('view engine', 'html');
 
-//Routings
-const auth = require('./routers/router_passport').auth
-app.use('/auth', auth);
-const router = require('./routers/user_router');
+
+const router = require('./routers/router_main');
 app.use('/', router);
 
 //Database Connection

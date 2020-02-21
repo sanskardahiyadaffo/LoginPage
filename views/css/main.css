@@ -3,25 +3,30 @@
 
 @font-face {
   font-family: Poppins-Regular;
-  src: url('../fonts/poppins/Poppins-Regular.ttf');
+  src: url("../fonts/poppins/Poppins-Regular.ttf");
 }
 
 @font-face {
   font-family: Poppins-Medium;
-  src: url('../fonts/poppins/Poppins-Medium.ttf');
+  src: url("../fonts/poppins/Poppins-Medium.ttf");
 }
 
 @font-face {
   font-family: Poppins-Bold;
-  src: url('../fonts/poppins/Poppins-Bold.ttf');
+  src: url("../fonts/poppins/Poppins-Bold.ttf");
 }
 
 @font-face {
   font-family: Poppins-SemiBold;
-  src: url('../fonts/poppins/Poppins-SemiBold.ttf');
+  src: url("../fonts/poppins/Poppins-SemiBold.ttf");
 }
 
-
+.zmdi-eye {
+  content: url("https://api.iconify.design/zmdi-eye.svg?height=16&inline=true");
+}
+.zmdi-eye-off {
+  content: url("https://api.iconify.design/zmdi-eye-off.svg?height=16&inline=true");
+}
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
@@ -36,7 +41,6 @@ html {
   height: 100%;
   font-family: Poppins-Regular, sans-serif;
 }
-
 
 /*---------------------------------------------*/
 
@@ -69,7 +73,6 @@ a:hover {
   color: linear-gradient(left, #21d4fd, #b721ff);
 }
 
-
 /*---------------------------------------------*/
 
 h1,
@@ -94,7 +97,6 @@ li {
   margin: 0px;
   list-style-type: none;
 }
-
 
 /*---------------------------------------------*/
 
@@ -177,7 +179,6 @@ textarea:-ms-input-placeholder {
   color: #adadad;
 }
 
-
 /*---------------------------------------------*/
 
 button {
@@ -193,7 +194,6 @@ button:hover {
 iframe {
   border: none !important;
 }
-
 
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
@@ -211,7 +211,6 @@ iframe {
   color: #333333;
   line-height: 1.5;
 }
-
 
 /*//////////////////////////////////////////////////////////////////
 [ login ]*/
@@ -249,7 +248,6 @@ iframe {
   -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
-
 /*------------------------------------------------------------------
 [ Form ]*/
 
@@ -270,7 +268,6 @@ iframe {
 .login100-form-title i {
   font-size: 60px;
 }
-
 
 /*------------------------------------------------------------------
 [ Input ]*/
@@ -304,7 +301,6 @@ iframe {
   background: transparent;
   padding: 0 5px;
 }
-
 
 /*---------------------------------------------*/
 
@@ -355,22 +351,21 @@ iframe {
   transition: all 0.4s;
 }
 
-.input100:focus+.focus-input100::after {
+.input100:focus + .focus-input100::after {
   top: -15px;
 }
 
-.input100:focus+.focus-input100::before {
+.input100:focus + .focus-input100::before {
   width: 100%;
 }
 
-.has-val.input100+.focus-input100::after {
+.has-val.input100 + .focus-input100::after {
   top: -15px;
 }
 
-.has-val.input100+.focus-input100::before {
+.has-val.input100 + .focus-input100::before {
   width: 100%;
 }
-
 
 /*---------------------------------------------*/
 
@@ -411,7 +406,6 @@ iframe {
   color: linear-gradient(left, #21d4fd, #b721ff);
 }
 
-
 /*------------------------------------------------------------------
 [ Button ]*/
 
@@ -442,7 +436,13 @@ iframe {
   width: 300%;
   height: 100%;
   background: #a64bf4;
-  background: -webkit-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
+  background: -webkit-linear-gradient(
+    right,
+    #21d4fd,
+    #b721ff,
+    #21d4fd,
+    #b721ff
+  );
   background: -o-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
   background: -moz-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
   background: linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
@@ -476,7 +476,6 @@ iframe {
   left: 0;
 }
 
-
 /*------------------------------------------------------------------
 [ Responsive ]*/
 
@@ -485,7 +484,6 @@ iframe {
     padding: 77px 15px 33px 15px;
   }
 }
-
 
 /*------------------------------------------------------------------
 [ Alert validate ]*/
@@ -545,7 +543,6 @@ iframe {
   opacity: 1;
 }
 
-
 /* Custom CSS */
 
 #templete a {
@@ -562,7 +559,6 @@ iframe {
   right: -210px;
   min-width: 0%;
   padding: 50px 10px 50px 0;
-  ;
   flex-direction: row;
   transition: 2s right;
   z-index: 2;
@@ -581,7 +577,7 @@ iframe {
   right: 0;
 }
 
-#showData2:hover #Gamebar>a {
+#showData2:hover #Gamebar > a {
   color: #6a7dfe;
 }
 

@@ -17,22 +17,14 @@ let value = '';
             }
             FR.readAsDataURL(path)
             // $('#photo-DIV').css("background-image", "url('https://i.pinimg.com/originals/b7/c6/d0/b7c6d073eb855e108ec51716ad87fd1d.png')")
-        } else { 
+        } else {
             alert('Invalid File Type\n*Only jpeg, png and gif are allowed..!!');
         }
     });
 
-    $('#pass1').keyup(function () {
-        // console.log('Done');
-        value = $(this).val().trim();
-        if ($(this).val().trim() != "") {
-            $('#pass2').prop('disabled', false);
-        } else {
-            $('#pass2').prop('disabled', true);
-        }
-    });
     $('#pass2').keyup(function () {
         // console.log('Done');
+        value = $('#pass1').val().trim();
         let val = $(this).val().trim();
         if (val == value.substr(0, val.length).trim()) {
             $('#pass2').css({ 'background-color': 'white' });
@@ -40,6 +32,24 @@ let value = '';
         } else {
             $('#pass2').css({ 'background-color': 'rgba(255,0,0,0.1)' });
             $('#pass1').css({ 'background-color': 'rgba(255,0,0,0.1)' });
+        }
+    });
+    $('#pass1').keyup(function () {
+        // console.log('Done');
+        value = $('#pass2').val().trim();
+        let val = $(this).val().trim();
+        if (val == value.substr(0, val.length).trim()) {
+            $('#pass2').css({ 'background-color': 'white' });
+            $('#pass1').css({ 'background-color': 'white' });
+        } else {
+            $('#pass2').css({ 'background-color': 'rgba(255,0,0,0.1)' });
+            $('#pass1').css({ 'background-color': 'rgba(255,0,0,0.1)' });
+        }
+        if ($(this).val().trim() != "") {
+            $('#pass2').prop('disabled', false);
+        } else {
+            $('#pass2').prop('disabled', true);
+            $('#pass2').css({ 'background-color': 'rgba(0, 0, 0, 0.1)' });
         }
     });
     /*==================================================================
