@@ -4,10 +4,10 @@ const api = require('../apis/api');
 
 router
     .get('/', async (req, res) => {
-        console.log('Get Call for Game 1 by ', customUserName);
+        console.log('Get Call for Game 1 by ', req.cookies.MyCookie.username);
         if (req.cookies.MyCookie) {
             // console.log(i++, req.mongocookies.MyCookie);
-            res.render('Game1.htm', { data: req.cookies.MyCookie });
+            res.render('Saints&Cannibel_Game.htm', { data: req.cookies.MyCookie });
         } else {
             // console.log('Session Expired');
             // res.render('Game1.htm', { data: { username: 'Unknown' } });

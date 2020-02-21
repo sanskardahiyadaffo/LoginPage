@@ -13,7 +13,6 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 
-let customUserName = '';
 
 //Home Page
 router
@@ -22,10 +21,8 @@ router
             //check if user have an active session
             // console.log(i++, req.cookies.MyCookie);
             res.redirect('login');//transfer to login
-
         } else {
             //No Active user
-            customUserName = ''
             res.render('index.htm');//show homepage
         }
     });
@@ -42,9 +39,7 @@ router
 router
     .get('/signout', (req, res) => {
         //signout page
-        console.log(customUserName, ' is signing out');
-        //set username to empty
-        customUserName = '';
+        console.log(req.cookies.MyCookie.username, ' is signing out');
         //clear cookie
         req.logOut();
         res.clearCookie('MyCookie');
@@ -79,10 +74,9 @@ router
                 let outputdata2 = await api.getdata(Validation1);
                 personaldata = outputdata2;
                 // Assign name to Customer 
-                customUserName = outputdata2.username;
-                console.log(customUserName, ':Update Sucessfull\n', outputdata2);
                 // Creating cookie and expiry data
                 res.cookie("MyCookie", personaldata, { maxAge: CookieTimeout });
+                console.log(req.cookies.MyCookie.username, ':Update Sucessfull\n', outputdata2);
                 // Redirect to login
                 res.redirect('/');
                 personaldata = {}
@@ -94,7 +88,7 @@ router
             }
         })
     .get((req, res) => {
-        console.log('Get call on Update by ', customUserName);
+        console.log('Get call on Update by ', req.cookies.MyCookie.username);
         res.redirect('signup');
     });
 
@@ -144,10 +138,9 @@ router
             // Creating Cookies
             res.cookie("MyCookie", personaldata, { maxAge: CookieTimeout });
             // Assign username
-            customUserName = personaldata.username;
             res.redirect('/')
             // res.render('final.htm', { data: personaldata })
-            console.log('Post Call for /login by ', customUserName);
+            console.log('Post Call for /login by ', req.cookies.MyCookie.username);
             personaldata = {};
         } catch (err) {
             //console.log(err);
@@ -156,7 +149,7 @@ router
         }
     })
     .get(async (req, res) => {
-        console.log('Get Call for /login by ', customUserName);
+        console.log('Get Call for /login by ', req.cookies.MyCookie.username);
         if (req.cookies.MyCookie) {
             // console.log(i++, req.mongocookies.MyCookie);
             res.render('final.htm', { data: req.cookies.MyCookie });
