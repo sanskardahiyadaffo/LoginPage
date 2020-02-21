@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 const api = require('../apis/api');
 const CookieTimeout = require('../keys').cookie.timeOut;
 const multer = require('multer')
@@ -8,6 +9,13 @@ const storage = multer.diskStorage({
         cb(null, 'views/profilePictures')
     },
     filename: function (req, file, cb) {
+        try {
+            let removalPath = `${__dirname.toString().slice(0, -7)}views/profilePictures/${req.cookies.MyCookie.photo}`;
+            require('fs').unlinkSync(removalPath);
+            // console.log('mypath>>>', removalPath);
+        } catch (err) {
+            // console.log('errr>>>>', err);
+        }
         let indx = file.mimetype.search('/');
         cb(null, `${Math.random().toString().substr(2)}${Date.now()}.${file.mimetype.substr(indx + 1)}`);
     }
