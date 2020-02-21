@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const api = require('./api');
-const CookieTimeout = require('./keys').cookie.timeOut;
+const api = require('../apis/api');
+const CookieTimeout = require('../keys').cookie.timeOut;
 let customUserName = '';
 
 //Home Page
@@ -96,6 +96,8 @@ router
                 firstname: userdata.firstname,
                 lastname: userdata.lastname
             }
+            console.log(userdata)
+            return 0;
             //Validate EMAIL; Raise error if invalid
             let Validation1 = await api.getValidation(userdata.email, 'email');
             // console.log(Validation);

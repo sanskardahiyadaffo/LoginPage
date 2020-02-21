@@ -19,7 +19,13 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <form class="login100-form validate-form" method="POST" action="registration">
+                <form class="login100-form validate-form" method="POST" action="registration"
+                    enctype="multipart/form-data">
+                    <div class="form-photo" id='photo-DIV'
+                        onclick="let z = document.getElementById('photoInput');z.click();">
+                        <span id='photo-text'>PHOTO</span>
+                        <input class="input100" id='photoInput' type="file" name="photo" />
+                    </div>
                     <div class="form-row">
                         <div class="wrap-input100 form-half validate-input" data-validate="Enter First Name">
                             <input class="input100" type="text" name="firstname" />
@@ -46,14 +52,6 @@
                             <span class="focus-input100" data-placeholder="Phone Number"></span>
                         </div>
                     </div>
-
-
-
-
-
-
-
-
                     <div class="form-row">
                         <div class="wrap-input100 form-half validate-input" data-validate="Enter Password">
                             <span class="btn-show-pass">
@@ -87,7 +85,7 @@
                         <a class="txt2" href="/">
                             Sign In
                         </a>
-                        
+
                         <div id='templete'><a href='/'>Created and Maintained by Sanskar Dahiya</a href='login'></div>
 
                     </div>

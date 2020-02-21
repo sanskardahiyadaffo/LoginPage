@@ -1,7 +1,7 @@
 const passport = require('passport');
 const passportGoogle = require('passport-google-oauth20');
-const credentials = require('./keys');
-const api = require('./api')
+const credentials = require('../keys');
+const api = require('../apis/api')
 const CookieTimeout = credentials.cookie.timeOut;
 
 const router = require('express').Router();

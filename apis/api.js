@@ -1,4 +1,4 @@
-const DB = require('./schema');
+const DB = require('../schemas/schema');
 const myDB = DB.loginDB;
 const ObjectId = require('mongoose').Types.ObjectId;
 module.exports = {

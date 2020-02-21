@@ -255,6 +255,7 @@ iframe {
 
 .login100-form {
   width: 100%;
+  position: relative;
 }
 
 .login100-form-title {
@@ -601,4 +602,34 @@ iframe {
     visibility: visible;
     opacity: 1;
   }
+}
+
+.form-photo {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0;
+  right: 50%;
+  transform: translate(50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  background-size: contain;
+  border-radius: 100%;
+}
+
+#photo-DIV {
+  transition: 0.5s;
+  border: 1px solid blue;
+}
+
+#photo-DIV:hover {
+  border-radius: 0;
+}
+
+.form-photo input {
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
 }

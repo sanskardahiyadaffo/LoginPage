@@ -6,15 +6,10 @@ const cookieSession = require('cookie-session');
 const ejs = require('ejs');
 const passport = require('passport');
 const credentials = require('./keys');
-const api = require('./api');
+
 //For post request
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-
-// Using passport
-app.use(passport.initialize());
-app.use(passport.session());
-
+app.use(bodyParser.urlencoded());//{ extended: true }));
 
 //using cookies
 app.use(cookieParser());
@@ -22,29 +17,26 @@ app.use(cookieSession({
     maxAge: credentials.cookie.timeOut,
     keys: [credentials.cookie.keys],
 }));
+
+// Using passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Static files
-app.use('/myfiles', express.static("webpage"));
-app.use('/Game1', express.static("Saints_And_Cannibels"));
+app.use('/myfiles', express.static("views"));
+// app.use('/Game1', express.static("Saints_And_Cannibels"));
+
 // Setting ejs for htm and html pages
 app.engine('htm', ejs.renderFile);
 app.engine('html', ejs.renderFile);
 app.set('view engine', 'htm');
 app.set('view engine', 'html');
-app.set('views', __dirname + '/webpage');
 
 //Routings
-const auth = require('./passport').auth
+const auth = require('./routers/router_passport').auth
 app.use('/auth', auth);
-const router = require('./router');
+const router = require('./routers/user_router');
 app.use('/', router);
-
-//Listening to server
-const port = process.env.PORT || 8081;
-const hostname = '0.0.0.0';
-// const hostname = '192.168.100.152';
-const server = app.listen(port, hostname, () => {
-    console.log(`Server is Running at port ${server.address().port}`);
-});
 
 //Database Connection
 const mongoose = require('mongoose');
@@ -61,3 +53,13 @@ mongoose.connect(credentials.mongoose.url,
             console.log('MongoDB Connected')
 
     });
+
+//Listening to server
+// const port = process.env.PORT || 8081;
+const port = 8081;
+const hostname = '0.0.0.0';
+
+// const hostname = '192.168.100.152';
+const server = app.listen(port, hostname, () => {
+    console.log(`Server is Running at port ${server.address().port}`);
+});
