@@ -5,10 +5,11 @@ const CookieTimeout = require('../keys').cookie.timeOut;
 const multer = require('multer')
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, '/views/profilePictures')
+        cb(null, 'views/profilePictures')
     },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now())
+        let indx = file.mimetype.search('/');
+        cb(null, `${Math.random().toString().substr(2)}${Date.now()}.${file.mimetype.substr(indx + 1)}`);
     }
 })
 const upload = multer({ storage: storage })
@@ -50,14 +51,18 @@ router
 router
     .route('/update')
     .post(
-        upload.none(),
+        upload.any(),
         async (req, res) => {
+            // console.log('uploaded image is at', req.files || 'No Image Found');
             try {
                 let userdata = req.body;
                 //merge firstname and lastpage into name
                 userdata.name = {
                     firstname: userdata.firstname,
                     lastname: userdata.lastname
+                }
+                if (req.files) {
+                    userdata.photo = req.files[0].filename;
                 }
                 // To verify password; Raise error if invalid
                 let outputdata = await api.getdata({ name: userdata.email, password: userdata.password3 });
@@ -95,34 +100,39 @@ router
 
 router
     .route(`/registration`)
-    .post(async (req, res) => {
-        try {
-            // Get Data
-            let userdata = req.body;
-            userdata.name = {
-                firstname: userdata.firstname,
-                lastname: userdata.lastname
+    .post(
+        upload.any(),
+        async (req, res) => {
+            // console.log('uploaded image is at', req.files || 'No Image Found');
+            try {
+                // Get Data
+                let userdata = req.body;
+                userdata.name = {
+                    firstname: userdata.firstname,
+                    lastname: userdata.lastname
+                }
+                if (req.files) {
+                    userdata.photo = req.files[0].filename;
+                }
+                //Validate EMAIL; Raise error if invalid
+                let Validation1 = await api.getValidation(userdata.email, 'email');
+                // console.log(Validation);
+
+                //Validate USERNAME; Raise error if invalid
+                let Validation2 = await api.getValidation(userdata.username, 'username');
+                // console.log(Validation);
+
+                // Insert data into database
+                let output = await api.adduser(userdata);
+                console.log("Registration Done ", output);
+                // Creating Cookie
+                res.cookie("MyCookie", output, { maxAge: CookieTimeout });
+                res.redirect('/');
+            } catch (err) {
+                console.log('Data Validation Failed at database');
+                res.send('<script> alert("Username or Email already exists\\nPlease Re-Enter data");location.href="user/registration";</script>');
             }
-
-            //Validate EMAIL; Raise error if invalid
-            let Validation1 = await api.getValidation(userdata.email, 'email');
-            // console.log(Validation);
-
-            //Validate USERNAME; Raise error if invalid
-            let Validation2 = await api.getValidation(userdata.username, 'username');
-            // console.log(Validation);
-
-            // Insert data into database
-            let output = await api.adduser(userdata);
-            console.log("Registration Done ", output);
-            // Creating Cookie
-            res.cookie("MyCookie", output, { maxAge: CookieTimeout });
-            res.redirect('/');
-        } catch (err) {
-            console.log('Data Validation Failed at database');
-            res.send('<script> alert("Username or Email already exists\\nPlease Re-Enter data");location.href="user/registration";</script>');
-        }
-    })
+        })
     .get((req, res) => {
         res.redirect('signup');
     });
@@ -130,30 +140,32 @@ router
 
 router
     .route('/login')
-    .post(async (req, res) => {
-        try {
-            // Capture Data
-            let outputdata = await api.getdata(req.body);
-            personaldata = outputdata;
-            // Creating Cookies
-            res.cookie("MyCookie", personaldata, { maxAge: CookieTimeout });
-            // Assign username
-            res.redirect('/')
-            // res.render('final.htm', { data: personaldata })
-            console.log('Post Call for /login by ', req.cookies.MyCookie.username);
-            personaldata = {};
-        } catch (err) {
-            //console.log(err);
-            res.send('<script> alert("Username/Email or Password mismatch\\nPlease try again..!!");location.href="/";</script>');
 
-        }
-    })
+    .post(
+        upload.none(),
+        async (req, res) => {
+            try {
+                // Capture Data
+                let outputdata = await api.getdata(req.body);
+                // Creating Cookies
+                res.cookie("MyCookie", outputdata, { maxAge: CookieTimeout });
+                // Assign username
+                console.log('Post Call for /login');
+                // res.render('final.htm', { data: personaldata })
+                res.redirect('/')
+            } catch (err) {
+                //console.log(err);
+                res.send('<script> alert("Username/Email or Password mismatch\\nPlease try again..!!");location.href="/";</script>');
+
+            }
+        })
     .get(async (req, res) => {
-        console.log('Get Call for /login by ', req.cookies.MyCookie.username);
         if (req.cookies.MyCookie) {
+            console.log('Get Call for /login by ', req.cookies.MyCookie.username);
             // console.log(i++, req.mongocookies.MyCookie);
             res.render('final.htm', { data: req.cookies.MyCookie });
         } else {
+            console.log('Get Call for /login');
             // console.log('Session Expired');
             res.send('<script> alert("Session Expired");location.href="/";</script>');
         }

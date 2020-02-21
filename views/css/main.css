@@ -600,12 +600,20 @@ iframe {
   }
 }
 
+.form-photo #DisplayPhoto {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  z-index: -1;
+}
+
 .form-photo {
   position: absolute;
   width: 100px;
   height: 100px;
   top: 0;
   right: 50%;
+  overflow: hidden;
   transform: translate(50%, -50%);
   display: flex;
   justify-content: center;
@@ -623,9 +631,20 @@ iframe {
 #photo-DIV:hover {
   border-radius: 0;
 }
-
+#photo-text {
+  text-align: center;
+}
 .form-photo input {
   visibility: hidden;
   width: 1px;
   height: 1px;
+}
+
+#showData {
+  position: relative;
+}
+#showData .form-photo {
+  top: 0;
+  right: 0;
+  transform: translate(-50%, 50%);
 }

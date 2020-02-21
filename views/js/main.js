@@ -1,10 +1,23 @@
 let value = '';
-
+let image_data;
 (function ($) {
     "use strict";
     /*****************************************************
      * Custun settings
      * ************** */
+    $('#photoInput').change(
+        () => {
+            if (document.getElementById('photoInput').value != '') {
+                image_data = document.getElementById('photo-text').innerHTML;
+                document.getElementById('photo-text').innerHTML = '';
+
+
+            } else {
+                document.getElementById('photo-text').innerHTML = image_data;
+            }
+        }
+    );
+
     $('#photoInput').change(function (elm) {
         let path = elm.target.files[0];
 
@@ -13,10 +26,10 @@ let value = '';
             FR.onload = (data) => {
                 path = data.target.result;
                 console.log(path);
-                $('#photo-DIV').css("background-image", `url('${path}')`)
+                document.getElementById('DisplayPhoto').src = path;
+                // $('#photo-DIV').css("background-image", `url('${path}')`)
             }
             FR.readAsDataURL(path)
-            // $('#photo-DIV').css("background-image", "url('https://i.pinimg.com/originals/b7/c6/d0/b7c6d073eb855e108ec51716ad87fd1d.png')")
         } else {
             alert('Invalid File Type\n*Only jpeg, png and gif are allowed..!!');
         }

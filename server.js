@@ -24,6 +24,7 @@ app.use(passport.session());
 
 // Static files
 app.use('/myfiles', express.static("views"));
+app.use('/', express.static("views/profilePictures"));
 // app.use('/Game1', express.static("Saints_And_Cannibels"));
 
 // Setting ejs for htm and html pages

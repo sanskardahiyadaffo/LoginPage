@@ -41,6 +41,12 @@
                 <form class="login100-form validate-form" method="POST" action="update" enctype="multipart/form-data">
                     <input type="text" id="_id" name='_id' value="<%= data._id%>" />
                     <input style="display: none;" type="text" value='<%=data.email%>' name="email" />
+                    <div class="form-photo" id='photo-DIV'
+                        onclick="let z = document.getElementById('photoInput');z.click();">
+                        <span id='photo-text'>Click To Change</span>
+                        <img id='DisplayPhoto' src='/<%=data.photo%>' alt='' />
+                        <input class="input100" id='photoInput' type="file" name="photo" />
+                    </div>
                     <div class="form-row">
                         <div class="wrap-input100 form-half validate-input" data-validate="Enter First Name">
                             <input class="input100 has-val" type="text" value='<%=data.name.firstname%>'
@@ -124,7 +130,10 @@
                 </form>
             </div>
             <div id="showData" class="wrap-login100">
-                <div class="form-row">
+                <div class="form-photo" id='photo-DIV'>
+                    <img id='DisplayPhoto' src='/<%=data.photo%>' alt='' />
+                </div>
+                <div class=" form-row">
                     Welcome
                     &nbsp;<span><%= data.name.firstname %></span>
                     &nbsp;<span><%= data.name.lastname %></span>

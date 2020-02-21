@@ -19,11 +19,12 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <form class="login100-form validate-form" method="POST" action="user/registration"
+                <form class="login100-form validate-form" method="POST" action="registration"
                     enctype="multipart/form-data">
                     <div class="form-photo" id='photo-DIV'
                         onclick="let z = document.getElementById('photoInput');z.click();">
-                        <span id='photo-text'>PHOTO</span>
+                        <span id='photo-text'>Click To Change</span>
+                        <img id='DisplayPhoto' src='/' alt='' />
                         <input class="input100" id='photoInput' type="file" name="photo" />
                     </div>
                     <div class="form-row">
